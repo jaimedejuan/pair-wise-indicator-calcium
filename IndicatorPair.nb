@@ -1,0 +1,173 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5177,        164]
+NotebookOptionsPosition[      4739,        143]
+NotebookOutlinePosition[      5094,        159]
+CellTagsIndexPosition[      5051,        156]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Numerical solution of coupled equations for Ca concentration", \
+"Subsection",
+ CellChangeTimes->{{3.672463691957347*^9, 3.672463733349722*^9}}],
+
+Cell["\<\
+This code solves the system of equations given by Eqs. (3) and (4) of the \
+Supplementary Material, with unknowns CaInit and CaFin. A numerical solution \
+is found with a Newton method, as implemented in the FindRoot routine. This \
+method requires two initial trial values for CaInit and CaFin, stored in \
+Seed1 and Seed2, from which the true iterative solution is obtained. The \
+parameters from from the two indicators are introduced in the following \
+lines.  \
+\>", "Text",
+ CellChangeTimes->{{3.672463874197641*^9, 3.6724638864244623`*^9}, {
+  3.672476083214182*^9, 3.672476516017893*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Seed1", "=", "10"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Seed2", "=", "20"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DeltaF1", "=", "1.5297"}], ";", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"First", " ", "indicator", " ", "data"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"Rd1", "=", "45"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Kd1", "=", "150"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"n1", "=", "1.6"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"DeltaF2", "=", "1.6897"}], ";", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Second", " ", "indicator", " ", "data"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"Rd2", "=", "48"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Kd2", "=", "210"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"n2", "=", "1.6"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"FinSol", "=", 
+  RowBox[{"FindRoot", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"DeltaF1", "\[Equal]", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"Rd1", "-", "1"}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"Kd1", "/", "CaFin"}], ")"}], "^", "n1"}], "+", "1"}], 
+            ")"}]}]}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"Rd1", "-", "1"}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"Kd1", "/", "CaInit"}], ")"}], "^", "n1"}], "+", "1"}],
+             ")"}]}]}], ")"}]}]}], ",", 
+      RowBox[{"DeltaF2", "\[Equal]", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"Rd2", "-", "1"}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"Kd2", "/", "CaFin"}], ")"}], "^", "n2"}], "+", "1"}], 
+            ")"}]}]}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"Rd2", "-", "1"}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"Kd2", "/", "CaInit"}], ")"}], "^", "n2"}], "+", "1"}],
+             ")"}]}]}], ")"}]}]}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"CaInit", ",", "Seed1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"CaFin", ",", "Seed2"}], "}"}]}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.631217119151462*^9, 3.631217162039242*^9}, {
+  3.672463772020295*^9, 3.672463828277383*^9}, {3.6724638624751463`*^9, 
+  3.672463864606316*^9}, {3.67247638495648*^9, 3.672476409101634*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"CaInit", "\[Rule]", "110.40684693667166`"}], ",", 
+   RowBox[{"CaFin", "\[Rule]", "189.80066524893857`"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.6312171633615713`*^9, 3.6724638332428493`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 652},
+WindowMargins->{{84, Automatic}, {Automatic, 5}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 150, 2, 44, "Subsection"],
+Cell[732, 26, 606, 10, 106, "Text"],
+Cell[CellGroupData[{
+Cell[1363, 40, 3099, 92, 335, "Input"],
+Cell[4465, 134, 246, 5, 28, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
